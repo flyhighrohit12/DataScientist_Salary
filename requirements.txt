@@ -79,8 +79,8 @@ PySocks==1.7.1
 python-dateutil==2.8.2
 python-dotenv==1.0.0
 python-json-logger==2.0.7
-pywin32==306
-pywinpty==2.0.13
+pywin32
+pywinpty
 PyYAML==6.0.1
 pyzmq==25.1.2
 referencing==0.34.0
