@@ -178,6 +178,7 @@ elif selected_tab == "Train & Evaluate":
         st.pyplot(fig)
 
 # Predict tab
+# Predict tab
 else:
     st.title("Predict Salary")
     
@@ -197,11 +198,15 @@ else:
         company_size = st.selectbox("Company Size", df['company_size'].unique())
         
         # Encode inputs
-        le = LabelEncoder()
-        encoded_job_title = le.fit_transform([job_title])[0]
-        encoded_experience_level = le.fit_transform([experience_level])[0]
-        encoded_employment_type = le.fit_transform([employment_type])[0]
-        encoded_company_size = le.fit_transform([company_size])[0]
+        le_job = LabelEncoder().fit(df['job_title'])
+        le_exp = LabelEncoder().fit(df['experience_level'])
+        le_emp = LabelEncoder().fit(df['employment_type'])
+        le_size = LabelEncoder().fit(df['company_size'])
+        
+        encoded_job_title = le_job.transform([job_title])[0]
+        encoded_experience_level = le_exp.transform([experience_level])[0]
+        encoded_employment_type = le_emp.transform([employment_type])[0]
+        encoded_company_size = le_size.transform([company_size])[0]
         
         # Model selection
         selected_model = st.selectbox("Select Model for Prediction", list(models.keys()))
