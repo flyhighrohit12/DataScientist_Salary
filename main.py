@@ -163,14 +163,19 @@ elif selected_tab == "Train & Evaluate":
         st.pyplot(fig)
         
         # Feature importance
-        if model_name != "Linear Regression":
-            st.subheader("Feature Importance")
+        #if model_name != "Linear Regression":
+        if model_name == "Linear Regression":
+            importances = model.coef_
+            feature_importance = pd.DataFrame({'feature': X.columns, 'importance': importances})
+        else:
             importances = model.feature_importances_
             feature_importance = pd.DataFrame({'feature': X.columns, 'importance': importances})
-            feature_importance = feature_importance.sort_values('importance', ascending=False)
-            fig, ax = plt.subplots()
-            sns.barplot(x='importance', y='feature', data=feature_importance, ax=ax)
-            st.pyplot(fig)
+        
+        feature_importance = pd.DataFrame({'feature': X.columns, 'importance': importances})
+        feature_importance = feature_importance.sort_values('importance', ascending=False)
+        fig, ax = plt.subplots()
+        sns.barplot(x='importance', y='feature', data=feature_importance, ax=ax)
+        st.pyplot(fig)
 
 # Predict tab
 else:
